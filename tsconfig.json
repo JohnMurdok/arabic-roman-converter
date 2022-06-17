@@ -1,0 +1,33 @@
+{
+    "buildOptions": {
+        "incremental": true
+    },
+    "compilerOptions": {
+        "composite": true,
+        "sourceMap": true,
+        "forceConsistentCasingInFileNames": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "noUnusedParameters": false,
+        "noImplicitAny": true,
+        "strict": true,
+        "noEmitOnError": true,
+        "skipLibCheck": true,
+        "noErrorTruncation": true,
+        "noUnusedLocals": true,
+        "allowJs": true,
+    },
+    "include": [
+        "lerna.json",
+        "tsconfig.json",
+        "packages/**/*.js",
+        "projects/**/*.ts"
+    ],
+    "exclude": [
+        "**/build/**/*",
+        "node_modules",
+        "**/node_modules/*",
+        "*.test.js",
+        "*.test.ts"
+    ]
+}
