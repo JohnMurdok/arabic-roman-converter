@@ -1,0 +1,4 @@
+type Query {
+    convertToArabic(romanNumber: RomanNumber!): NonNegativeInt!
+    convertToRoman(arabicNumber: NonNegativeInt!): RomanNumber!
+}

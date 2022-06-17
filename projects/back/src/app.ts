@@ -1,5 +1,6 @@
 import express from 'express';
 import errorMiddleware from '@middlewares/error';
+import apolloServer from './apollo';
 
 const app = express();
 
@@ -8,6 +9,9 @@ const app = express();
  */
 const startServer = async (): Promise<void> => {
     try {
+        await apolloServer.start();
+
+        app.use('/graphql', apolloServer.getMiddleware({ path: '/' }));
         app.use(errorMiddleware);
         app.listen({
             port: process.env.SERVER_PORT,
