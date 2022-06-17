@@ -1,0 +1,39 @@
+{
+  "name": "bet-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "start": "nodemon --watch 'src/**' --ext 'ts,graphql' --exec \"ts-node -r tsconfig-paths/register -r dotenv/config src/app.ts\"",
+    "build": "rm -R -f ./dist && npx tsc",
+    "lint": "npx eslint . --fix",
+    "test": "npx jest --coverage --forceExit --detectOpenHandles --runInBand --passWithNoTests ./src/test/"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "http-status": "^1.5.2"
+  },
+  "devDependencies": {
+    "@types/dotenv-safe": "^8.1.2",
+    "@types/jest": "^28.1.2",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "dotenv-safe": "^8.2.0",
+    "eslint": "^8.17.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.2",
+    "jest": "^28.1.1",
+    "nodemon": "^2.0.16",
+    "ts-jest": "^28.0.5",
+    "ts-node": "^10.8.1",
+    "tsconfig-paths": "^4.0.0",
+    "typescript": "^4.7.3"
+  },
+  "author": "John Murdok",
+  "license": "ISC"
+}

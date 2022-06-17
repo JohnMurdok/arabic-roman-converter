@@ -1,0 +1,43 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "target": "es2020",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "outDir": "dist",
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "baseUrl": "./src",
+        "paths": {
+            "@enums/*": [
+                "enum/*"
+            ],
+            "@services/*": [
+                "service/*"
+            ],
+            "@utils/*": [
+                "util/*"
+            ],
+            "@types/*": [
+                "type/*"
+            ],
+            "@resolvers/*": [
+                "apollo/resolver/*"
+            ],
+            "@middlewares/*": [
+                "middleware/*"
+            ],
+            "@constants/*": [
+                "constant/*"
+            ]
+        }
+    },
+    "include": [
+        "./src/"
+    ]
+}
