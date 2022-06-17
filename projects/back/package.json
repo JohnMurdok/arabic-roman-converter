@@ -7,9 +7,9 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "start": "nodemon --watch 'src/**' --ext 'ts,graphql' --exec \"ts-node -r tsconfig-paths/register -r dotenv/config src/app.ts\"",
+    "start": "nodemon --watch 'src/**' --ext 'ts,graphql' --exec \"ts-node -r tsconfig-paths/register -r dotenv-safe/config src/app.ts\"",
     "build": "rm -R -f ./dist && npx tsc",
-    "lint": "npx eslint . --fix",
+    "lint": "npx eslint",
     "test": "npx jest --coverage --forceExit --detectOpenHandles --runInBand --passWithNoTests ./src/test/"
   },
   "dependencies": {
