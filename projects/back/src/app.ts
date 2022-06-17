@@ -1,4 +1,5 @@
 import express from 'express';
+import errorMiddleware from '@middlewares/error';
 
 const app = express();
 
@@ -7,6 +8,7 @@ const app = express();
  */
 const startServer = async (): Promise<void> => {
     try {
+        app.use(errorMiddleware);
         app.listen({
             port: process.env.SERVER_PORT,
         }, () => {

@@ -15,7 +15,8 @@ export default {
         'src/**/*.ts',
     ],
     moduleNameMapper: {
-        '^#test/(.*)$': '<rootDir>/src/test/$1',
+        '^@middlewares/(.*)$': '<rootDir>/src/middleware/$1',
+        '^@services/(.*)$': '<rootDir>/src/service/$1',
     },
     testEnvironment: 'jest-environment-node',
     testRegex: '(test|spec)\\.ts?$',

@@ -23,8 +23,8 @@
             "@utils/*": [
                 "util/*"
             ],
-            "@types/*": [
-                "type/*"
+            "@interfaces/*": [
+                "interface/*"
             ],
             "@resolvers/*": [
                 "apollo/resolver/*"
@@ -34,7 +34,10 @@
             ],
             "@constants/*": [
                 "constant/*"
-            ]
+            ],
+            "@errors/*": [
+                "./error/*"
+            ],
         }
     },
     "include": [
