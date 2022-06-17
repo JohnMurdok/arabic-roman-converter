@@ -1,4 +1,4 @@
 jest.config.ts
-ecosystem.config.prod.js
+ecosystem.config.js
 dist
 coverage
