@@ -15,6 +15,7 @@ export default {
         'src/**/*.ts',
     ],
     moduleNameMapper: {
+        '^@constants/(.*)$': '<rootDir>/src/constant/$1',
         '^@middlewares/(.*)$': '<rootDir>/src/middleware/$1',
         '^@services/(.*)$': '<rootDir>/src/service/$1',
     },
