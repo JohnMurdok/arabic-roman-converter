@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[PAGE] MainPage matches snapshot 1`] = `
+<div
+  class="MuiContainer-root MuiContainer-maxWidthSm css-cuefkz-MuiContainer-root"
+  data-testid="main-page"
+>
+  <card-component
+    data-testid="main-page-card"
+    title="Arabic number to roman number converter"
+  >
+    <arabic-input-component
+      data-testid="main-page-arabic-input"
+    />
+    <roman-input-component
+      data-testid="main-page-roman-input"
+    />
+  </card-component>
+</div>
+`;

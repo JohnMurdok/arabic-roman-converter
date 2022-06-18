@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[PAGE] CardComponent matches snapshot 1`] = `
+<div
+  class="MuiBox-root css-yat5fy"
+  data-testid="card-component"
+>
+  <div
+    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-1v5z4dq-MuiPaper-root-MuiCard-root"
+  >
+    <div
+      class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+      data-testid="card-component-content"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom css-16m3jxf-MuiTypography-root"
+      >
+        test card
+      </p>
+      <div>
+        test1
+      </div>
+    </div>
+  </div>
+</div>
+`;
