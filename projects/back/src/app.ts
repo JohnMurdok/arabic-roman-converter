@@ -1,6 +1,8 @@
 import express from 'express';
+import cors from 'cors';
 import errorMiddleware from '@middlewares/error';
 import apolloServer from './apollo';
+import routes from './route';
 
 const app = express();
 
@@ -10,7 +12,8 @@ const app = express();
 const startServer = async (): Promise<void> => {
     try {
         await apolloServer.start();
-
+        app.use(cors());
+        app.use(routes);
         app.use('/graphql', apolloServer.getMiddleware({ path: '/' }));
         app.use(errorMiddleware);
         app.listen({
