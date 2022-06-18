@@ -16,6 +16,7 @@ export default {
     ],
     moduleNameMapper: {
         '^@constants/(.*)$': '<rootDir>/src/constant/$1',
+        '^@enums/(.*)$': '<rootDir>/src/enum/$1',
         '^@middlewares/(.*)$': '<rootDir>/src/middleware/$1',
         '^@services/(.*)$': '<rootDir>/src/service/$1',
     },
