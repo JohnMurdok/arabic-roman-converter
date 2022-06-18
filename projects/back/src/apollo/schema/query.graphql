@@ -1,4 +1,4 @@
 type Query {
-    convertToArabic(romanNumber: RomanNumber!): NonNegativeInt!
-    convertToRoman(arabicNumber: NonNegativeInt!): RomanNumber!
+    convertToArabic(romanNumber: RomanNumber!, clientUuid: UUID!): Boolean!
+    convertToRoman(arabicNumber: NonNegativeInt!, clientUuid: UUID!): Boolean!
 }
