@@ -5,6 +5,8 @@ import { TextField } from '@mui/material';
 import DEFAULT_INPUT_PROPS, { DEBOUNCE_TIME } from '../../constant/input';
 import numberConverter from '../../service/numberConverter';
 import context from '../../context';
+import sseService from '../../service/sse';
+import EventEnum from '../../enum/event';
 
 const ARABIC_INPUT_PROPS = {
     ...DEFAULT_INPUT_PROPS,
@@ -17,6 +19,9 @@ const ARABIC_INPUT_PROPS = {
 };
 
 const NUMBER_REG_EXP = /^\d+$/;
+interface IMessageEvent {
+    romanNumber: string;
+}
 
 const ArabicInputComponent = () => {
     const {
@@ -51,12 +56,12 @@ const ArabicInputComponent = () => {
         if (!arabicNumber || state.arabicNumber !== arabicNumber || state.error) {
             return;
         }
-        const romanNumber = await numberConverter.convertToRoman(arabicNumber);
-        if (!romanNumber) {
-            // TODO: Handle error message
-            return;
-        }
-        setRomanNumber(romanNumber);
+
+        sseService.registerEvent(EventEnum.CONVERT_TO_ROMAN, (ev: IMessageEvent) => {
+            setRomanNumber(ev.romanNumber);
+        });
+
+        await numberConverter.convertToRoman(arabicNumber, sseService.clientUuid);
     }, DEBOUNCE_TIME,[arabicNumber, state]);
 
 
