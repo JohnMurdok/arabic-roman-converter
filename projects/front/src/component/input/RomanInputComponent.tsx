@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { useSetState, useDebounce } from 'react-use';
 import { TextField } from '@mui/material';
-import DEFAULT_INPUT_PROPS, { ROMAN_REG_EXP } from '../../constant/input';
+import DEFAULT_INPUT_PROPS, { DEBOUNCE_TIME, ROMAN_REG_EXP } from '../../constant/input';
+import numberConverter from '../../service/numberConverter';
+import context from '../../context';
 
-// const DEBOUNCE_TIME = 2000;
 const ROMAN_INPUT_PROPS = {
     ...DEFAULT_INPUT_PROPS,
     type: 'string',
@@ -10,20 +12,39 @@ const ROMAN_INPUT_PROPS = {
 };
 
 const RomanInputComponent = () => {
-    const [error, setError] = useState(false);
+    const { romanNumber, setArabicNumber, setRomanNumber } = useContext(context);
+    const [state, setState] = useSetState({
+        romanNumber,
+        error: false,
+    });
 
     const onChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+        ev.preventDefault();
         const { value } = ev.target;
         if (!value.match(ROMAN_REG_EXP)) {
-            setError(true);
+            setState({ error: true, romanNumber: value });
             return;
         }
-        setError(false);
+        setState({ error: false, romanNumber: value });
+        setRomanNumber(value);
     };
 
+    useDebounce(async () => {
+        if (!romanNumber || state.romanNumber !== romanNumber || state.error) {
+            return;
+        }
+        const arabicNumber = await numberConverter.convertToArabic(romanNumber);
+        if (!arabicNumber) {
+            // Handle error to user
+            return;
+        }
+        setArabicNumber(arabicNumber);
+    }, DEBOUNCE_TIME,[romanNumber, state]);
 
     return (
-        <TextField error={error} {...ROMAN_INPUT_PROPS} onChange={onChange} />
+        <TextField
+            data-testid={'roman-input'}
+            error={!!state.error} {...ROMAN_INPUT_PROPS} onChange={onChange} value={romanNumber} />
     );
 };
 
