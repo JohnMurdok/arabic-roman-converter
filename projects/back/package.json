@@ -38,7 +38,6 @@
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
     "copyfiles": "^2.4.1",
-    "tscpaths": "^0.0.9",
     "dotenv-safe": "^8.2.0",
     "eslint": "^8.17.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -50,6 +49,7 @@
     "ts-jest": "^28.0.5",
     "ts-node": "^10.8.1",
     "tsconfig-paths": "^4.0.0",
+    "tscpaths": "^0.0.9",
     "typescript": "^4.7.3"
   },
   "author": "John Murdok",
