@@ -15,7 +15,7 @@
         "skipLibCheck": true,
         "noErrorTruncation": true,
         "noUnusedLocals": true,
-        "allowJs": true,
+        "allowJs": true
     },
     "include": [
         "lerna.json",

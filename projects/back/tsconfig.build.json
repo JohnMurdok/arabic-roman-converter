@@ -1,24 +1,20 @@
 {
-    "extends": "../../tsconfig.json",
+    "extends": "./tsconfig.json",
     "compilerOptions": {
-        "module": "commonjs",
-        "esModuleInterop": true,
-        "target": "es2021",
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "noImplicitAny": true,
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "outDir": "dist",
-        "resolveJsonModule": true,
-        "allowJs": true,
+        "downlevelIteration": true,
+        "tsBuildInfoFile": "./dist/tsbuild.info",
+        "rootDir": "./src/",
+        "outDir": "./dist/",
         "baseUrl": "./src",
+        "module": "commonjs",
+        "target": "ES6",
+        "moduleResolution": "Node",
         "paths": {
             "@enums/*": [
-                "enum/*"
+                "./enum/*"
             ],
             "@services/*": [
-                "service/*"
+                "./service/*"
             ],
             "@utils/*": [
                 "util/*"
@@ -33,7 +29,7 @@
                 "middleware/*"
             ],
             "@constants/*": [
-                "constant/*"
+                "./constant/*"
             ],
             "@errors/*": [
                 "./error/*"
@@ -41,6 +37,9 @@
         }
     },
     "include": [
-        "./src/"
+        "./src/**/*"
+    ],
+    "exclude": [
+        "./src/test/**/*"
     ]
 }

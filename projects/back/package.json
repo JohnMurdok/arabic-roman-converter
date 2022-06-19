@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "nodemon --watch 'src/**' --ext 'ts,graphql' --exec \"ts-node -r tsconfig-paths/register -r dotenv-safe/config src/app.ts\"",
-    "build": "rm -R -f ./dist && npx tsc",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && npx tscpaths -p tsconfig.build.json -s ./src -o ./dist && npm run build:graphql",
+    "build:graphql": "npx copyfiles -u 1 src/**/*.graphql dist",
     "lint": "npx eslint",
     "test": "npx jest --coverage --forceExit --detectOpenHandles --runInBand --passWithNoTests ./src/test/"
   },
@@ -33,6 +34,8 @@
     "@types/jest": "^28.1.2",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
+    "copyfiles": "^2.4.1",
+    "tscpaths": "^0.0.9",
     "dotenv-safe": "^8.2.0",
     "eslint": "^8.17.0",
     "eslint-config-airbnb-typescript": "^17.0.0",

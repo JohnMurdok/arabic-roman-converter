@@ -3,3 +3,4 @@ ecosystem.config.js
 ecosystem.config.prod.js
 dist
 coverage
+babel.config.js
