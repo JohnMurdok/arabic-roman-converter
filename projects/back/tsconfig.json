@@ -36,7 +36,10 @@
                 "constant/*"
             ],
             "@errors/*": [
-                "./error/*"
+                "error/*"
+            ],
+            "@controllers/*": [
+                "controller/*"
             ]
         }
     },

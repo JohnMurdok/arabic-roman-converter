@@ -4,12 +4,18 @@ import { TextField } from '@mui/material';
 import DEFAULT_INPUT_PROPS, { DEBOUNCE_TIME, ROMAN_REG_EXP } from '../../constant/input';
 import numberConverter from '../../service/numberConverter';
 import context from '../../context';
+import sseService from '../../service/sse';
+import EventEnum from '../../enum/event';
 
 const ROMAN_INPUT_PROPS = {
     ...DEFAULT_INPUT_PROPS,
     type: 'string',
     label: 'Roman number',
 };
+
+interface IMessageEvent {
+    arabicNumber: number;
+}
 
 const RomanInputComponent = () => {
     const { romanNumber, setArabicNumber, setRomanNumber } = useContext(context);
@@ -21,24 +27,25 @@ const RomanInputComponent = () => {
     const onChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
         ev.preventDefault();
         const { value } = ev.target;
-        if (!value.match(ROMAN_REG_EXP)) {
-            setState({ error: true, romanNumber: value });
+        const romanValue = value.toUpperCase();
+        if (!romanValue.match(ROMAN_REG_EXP)) {
+            setState({ error: true, romanNumber: romanValue });
             return;
         }
-        setState({ error: false, romanNumber: value });
-        setRomanNumber(value);
+        setState({ error: false, romanNumber: romanValue });
+        setRomanNumber(romanValue);
     };
 
     useDebounce(async () => {
         if (!romanNumber || state.romanNumber !== romanNumber || state.error) {
             return;
         }
-        const arabicNumber = await numberConverter.convertToArabic(romanNumber);
-        if (!arabicNumber) {
-            // Handle error to user
-            return;
-        }
-        setArabicNumber(arabicNumber);
+
+        sseService.registerEvent(EventEnum.CONVERT_TO_ARABIC, (ev: IMessageEvent) => {
+            setArabicNumber(ev.arabicNumber);
+        });
+
+        await numberConverter.convertToArabic(romanNumber, sseService.clientUuid);
     }, DEBOUNCE_TIME,[romanNumber, state]);
 
     return (

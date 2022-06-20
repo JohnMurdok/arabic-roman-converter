@@ -1,4 +1,4 @@
-# Jolimoi monorepo
+# arabic-roman-converter monorepo
 
 *Project* : Make a number converter from arabic system to roman system with a frontend application and backend application
 

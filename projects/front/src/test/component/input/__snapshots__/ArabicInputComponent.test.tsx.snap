@@ -29,6 +29,7 @@ exports[`[COMPONENT] ArabicInputComponent matches snapshot 1`] = `
       id=":r0:"
       min="1"
       required=""
+      step="1"
       type="number"
       value="1"
     />

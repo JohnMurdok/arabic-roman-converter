@@ -1,8 +1,8 @@
 {
-  "name": "jolimoi",
+  "name": "arabic-roman-converter",
   "private": true,
   "repository": {
-    "url": "https://github.com/JohnMurdok/jolimoi"
+    "url": "https://github.com/JohnMurdok/arabic-roman-converter"
   },
   "scripts": {
     "lint": "npx lerna run lint --parallel",

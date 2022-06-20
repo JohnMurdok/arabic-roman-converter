@@ -9,28 +9,26 @@ interface IRomanResponse {
   romanNumber: string
 }
 
-
 class NumberConverterService {
   /**
    * Convert to arabic from romanNumber
    * @param romanNumber 
    */
-  async convertToArabic(romanNumber: string): Promise<number | null> {
+  async convertToArabic(romanNumber: string, clientUuid: string): Promise<void> {
     try {
       const query = `
-        query convert($romanNumber: RomanNumber!) {
-          arabicNumber: convertToArabic(romanNumber: $romanNumber)
+        query convert($romanNumber: RomanNumber!, $clientUuid: UUID!) {
+          convertToArabic(romanNumber: $romanNumber, clientUuid: $clientUuid)
         }
       `;
       const variables = {
         romanNumber,
+        clientUuid: clientUuid
       };
 
-      const { data } = await apiService.doGqlRequest(query, variables) as IAxiosGqlRequest<IArabicResponse>;
-      return data.data.arabicNumber;
+      await apiService.doGqlRequest(query, variables) as IAxiosGqlRequest<IArabicResponse>;
     } catch (e) {
       console.error(e);
-      return null;
     }
   }
 
@@ -38,23 +36,22 @@ class NumberConverterService {
    * Convert to roman number from arabic number
    * @param arabicNumber
    */
-  async convertToRoman(arabicNumber: number): Promise<string | null> {
+  async convertToRoman(arabicNumber: number, clientUuid: string): Promise<void> {
     try {
       const query = `
-      query convert($arabicNumber: NonNegativeInt!) {
-        romanNumber: convertToRoman(arabicNumber: $arabicNumber)
+      query convert($arabicNumber: NonNegativeInt!, $clientUuid: UUID!) {
+        convertToRoman(arabicNumber: $arabicNumber, clientUuid: $clientUuid)
       }
     `;
 
       const variables = {
         arabicNumber,
+        clientUuid,
       };
 
-      const { data } = await apiService.doGqlRequest(query, variables) as IAxiosGqlRequest<IRomanResponse>;
-      return data.data.romanNumber;
+      await apiService.doGqlRequest(query, variables) as IAxiosGqlRequest<IRomanResponse>;
     } catch (e) {
       console.error(e);
-      return null;
     }
   }
 }
