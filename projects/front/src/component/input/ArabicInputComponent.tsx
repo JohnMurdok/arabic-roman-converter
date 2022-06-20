@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
+import { useSetState } from 'react-use';
 import { useDebounce } from 'react-use';
 import { TextField } from '@mui/material';
 import DEFAULT_INPUT_PROPS, { DEBOUNCE_TIME } from '../../constant/input';
@@ -20,17 +21,24 @@ const ArabicInputComponent = () => {
         setRomanNumber,
         setArabicNumber,
     } = useContext(context);
-    const [state, setState] = useState(arabicNumber);
+    const [state, setState] = useSetState({
+        error: false,
+        arabicNumber,
+    });
 
     const onChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
         ev.preventDefault();
         const { value } = ev.target;
-        setState(Number(value));
-        setArabicNumber(Number(value));
+        const newValue = Number(value);
+        setState({
+            arabicNumber: newValue,
+            error: newValue <= 0,
+        });
+        setArabicNumber(newValue);
     };
 
     useDebounce(async () => {
-        if (!arabicNumber || state !== arabicNumber) {
+        if (!arabicNumber || state.arabicNumber !== arabicNumber || state.error) {
             return;
         }
         const romanNumber = await numberConverter.convertToRoman(arabicNumber);
@@ -45,6 +53,7 @@ const ArabicInputComponent = () => {
     return (
         <TextField
             data-testid={'arabic-input'}
+            error={!!state.error}
             {...ARABIC_INPUT_PROPS} onChange={onChange} value={arabicNumber} />
     );
 }

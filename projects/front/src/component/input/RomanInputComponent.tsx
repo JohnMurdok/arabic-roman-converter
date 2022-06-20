@@ -21,12 +21,13 @@ const RomanInputComponent = () => {
     const onChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
         ev.preventDefault();
         const { value } = ev.target;
-        if (!value.match(ROMAN_REG_EXP)) {
-            setState({ error: true, romanNumber: value });
+        const romanValue = value.toUpperCase();
+        if (!romanValue.match(ROMAN_REG_EXP)) {
+            setState({ error: true, romanNumber: romanValue });
             return;
         }
-        setState({ error: false, romanNumber: value });
-        setRomanNumber(value);
+        setState({ error: false, romanNumber: romanValue });
+        setRomanNumber(romanValue);
     };
 
     useDebounce(async () => {
