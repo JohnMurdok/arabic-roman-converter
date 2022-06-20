@@ -12,8 +12,11 @@ const ARABIC_INPUT_PROPS = {
     label: 'Arabic number',
     inputProps: {
         min: 1,
+        step: 1,
     }
 };
+
+const NUMBER_REG_EXP = /^\d+$/;
 
 const ArabicInputComponent = () => {
     const {
@@ -30,9 +33,16 @@ const ArabicInputComponent = () => {
         ev.preventDefault();
         const { value } = ev.target;
         const newValue = Number(value);
+        if (!value.match(NUMBER_REG_EXP) || newValue <= 0) {
+            setState({
+                arabicNumber: newValue,
+                error: true,
+            });
+            return;
+        }
         setState({
             arabicNumber: newValue,
-            error: newValue <= 0,
+            error: false,
         });
         setArabicNumber(newValue);
     };
