@@ -1,7 +1,7 @@
 module.exports = {
     apps: [{
-        name: '@jolimoi/backend',
-        script: 'dist/src/app.js',
+        name: '@arabic-roman-converter/backend',
+        script: 'dist/app.js',
         watch: false,
     }],
 };
